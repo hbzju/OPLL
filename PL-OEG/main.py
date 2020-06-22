@@ -23,15 +23,6 @@ def read_data(file_name, type=1):
 
         data['X'] = preprocessing.scale(data['X'])
         # data['X'] = preprocessing.normalize(data['X'])
-
-        # n = int(data['X'].shape[0])
-        # if n > threshold:
-        #     n = threshold
-        # part = int(n * 0.8)
-        # out_data['X_train'] = data['X'][0:part, :]
-        # out_data['Y_train'] = ((data['Y_P'] > 0) * 1)[0:part, :]
-        # out_data['X_test'] = data['X'][part:n, :]
-        # out_data['Y_test'] = ((data['Y'] > 0) * 1)[part:n, :]
         out_data = data
     return out_data
 
