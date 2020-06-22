@@ -74,27 +74,6 @@ def run_omd_l2(data):
         Q[:, s_neg] -= x
         W = np.exp(eta * Q - 1)
 
-        # without approximation ------- just test
-        # pos_idx_arr = np.where(y == 1)[0]
-        # neg_idx_arr = np.where(y == 0)[0]
-        # flag = True
-        # for pos_idx in pos_idx_arr:
-        #     if flag:
-        #         for neg_idx in neg_idx_arr:
-        #             W_temp = W
-        #             W_temp[:, pos_idx] += eta * x
-        #             W_temp[:, neg_idx] -= eta * x
-        #             s_pos_temp, s_neg_temp = get_pos_neg(y, x.dot(W_temp))
-        #             if s_pos_temp == pos_idx and s_neg_temp == neg_idx:
-        #                 W = W_temp
-        #                 flag = False
-        #                 break
-        # if flag:
-            # print("Minimum cannot be found!")
-            # W[:, s_pos] += eta * x
-            # W[:, s_neg] -= eta * x
-        # -------- end test
-
     scores = np.append(data['X_test'], np.ones((data['X_test'].shape[0], 1)), axis=1).dot(W)
     y_pred = np.zeros_like(scores).astype(int)
     indices = np.argmax(scores, axis=1)
@@ -136,7 +115,7 @@ print(varianceResult)
 # for i, _ in enumerate(uciDataStr):
 #     result = []
 #     for j in range(1, 29):
-#         result_temp=ten_fold_run("/Users/qiangyuzhou/Desktop/experiment_partial/data/生成的数据集/UCI_processed/"+uciDataStr[i]+"/"+str(j)+".mat")
+#         result_temp=ten_fold_run("dir/"+uciDataStr[i]+"/"+str(j)+".mat")
 #         # result.append(np.mean(result_temp))
 #         writer.writerow(result_temp)
 #     # writer.writerow(result)
@@ -147,6 +126,6 @@ print(varianceResult)
 #     result = np.zeros((1,7))
 #     for k in range(0,1):
 #         for j in range(27, 29):
-#             result_temp=ten_fold_run("/Users/qiangyuzhou/Desktop/experiment_partial/data/生成的数据集/UCI_processed/"+uciDataStr[i]+"/"+str(j)+".mat")
+#             result_temp=ten_fold_run("dir/"+uciDataStr[i]+"/"+str(j)+".mat")
 #             result[k,j-22]=(np.mean(result_temp))
 #     print(np.mean(result,0))
