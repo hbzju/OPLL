@@ -21,16 +21,6 @@ def read_data(file_name, type=1):
         data['Y_P'] = np.array(data['Y_P'])
 
         data['X'] = preprocessing.scale(data['X'])
-        # data['X'] = preprocessing.normalize(data['X'])
-
-        # n = int(data['X'].shape[0])
-        # if n > threshold:
-        #     n = threshold
-        # part = int(n * 0.8)
-        # out_data['X_train'] = data['X'][0:part, :]
-        # out_data['Y_train'] = ((data['Y_P'] > 0) * 1)[0:part, :]
-        # out_data['X_test'] = data['X'][part:n, :]
-        # out_data['Y_test'] = ((data['Y'] > 0) * 1)[part:n, :]
         out_data = data
     return out_data
 
@@ -80,28 +70,7 @@ def run(data):
     for i in range(0, y_pred.shape[0]):
         y_pred[i, indices[i]] = 1
     metrics = metric(data['Y_test'], y_pred)
-
-    # test svm-------------
-    # print(data['X_train'][0], '\n', data['X_train'][1])
-
-    # from sklearn import svm
-    # labels = np.zeros_like(data['Y_train'][:, 0])
-    # for i in range(0, data['Y_train'].shape[0]):
-    #     for j in range(0, data['Y_train'].shape[1]):
-    #         if data['Y_train'][i][j] == 1:
-    #             break
-    #     labels[i] = j
-    # clf = Lclf = svm.LinearSVC(random_state=0, tol=1e-5).fit(data['X_train'], labels)
-    # y_pred = clf.predict(data['X_test'])
-    # # print(y_pred)
-
-    # temp = np.zeros_like(data['Y_test'])
-    # for i in range(0, data['Y_test'].shape[0]):
-    #     temp[i][y_pred[i]] = 1
-    # metrics = metric(data['Y_test'], temp)
-    # test svm-------------
-
-
+    
     # for value in metrics:
     #     print('%0.4f\t' % value, end="")
     return metrics[0]
